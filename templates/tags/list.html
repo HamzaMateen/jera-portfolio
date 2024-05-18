@@ -1,0 +1,24 @@
+{% import "macros/footer.html" as footer -%}
+{% import "macros/nav.html" as nav -%}
+
+{% extends "base.html" %}
+{%- block content -%}
+<div class="sub-grid">
+  <div class="content-grid">
+    <h1>#tags</h1>
+    Browse topics as tags below:
+    <ul>
+      {%- for term in terms -%}
+      {% set rss_path = "tags/" ~ term.name ~ "/atom.xml" %}
+      <li class="tag-list">
+        <span><a href="{{ get_taxonomy_url(kind='tags', name=term.name) }}">#{{ term.name }}</a>
+          ({{ term.pages | length }} post{{ term.pages | length | pluralize}})</span>
+        <span><a href="{{ get_url(path=rss_path, trailing_slash=false) }}"><i
+                                                                             class="fa-sharp fa-solid fa-rss"></i></a></span>
+      </li>
+      {%- endfor -%}
+    </ul>
+    {{ footer::footer() }}
+  </div>
+</div>
+{%- endblock content -%}

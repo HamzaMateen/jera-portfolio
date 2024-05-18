@@ -1,0 +1,42 @@
+.webring .articles {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -0.5rem;
+}
+.webring .title {
+  margin: 0;
+  a {
+    color: var(--color);
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline dotted;
+    }
+  }
+}
+
+.webring .article {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  background: var(--accent-alpha-20);
+  min-width: 10rem;
+}
+.webring .summary {
+  font-size: 0.8rem;
+  flex: 1 1 0;
+  color: var(--footnote-color);
+}
+.webring .attribution {
+  text-align: right;
+  font-size: 0.8rem;
+  color: var(--color);
+  a {
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline dotted;
+    }
+  }
+}
+

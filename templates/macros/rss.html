@@ -1,0 +1,4 @@
+{% macro rss() %}
+<link rel="alternate" type="application/atom+xml" title="RSS"
+  href="{{ get_url(path='atom.xml', trailing_slash=false) }}">
+{% endmacro %}

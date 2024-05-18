@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<div class="sub-grid">
+  <div class="content-grid">
+    {{ info::info(i=page) }}
+    {{ toc::toc(t=page.toc) }}
+    {{ content::content(c=page.content) }}
+    {{ footer::footer() }}
+  </div>
+  <div class="right-grid">
+    {{ toc::toc(t=page.toc) }}
+  </div>
+</div>
+
+{% endblock content %}

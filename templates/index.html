@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="sub-grid">
+  <div class="content-grid">
+    {{ info::info(i=section) }}
+    {{ content::content(c=section.content) }}
+    <div class="content">
+      <ul>
+        {% if config.extra.show_external_links %}
+        {% for ext in config.extra.external_links -%}
+        <li><a href="{{ ext.permalink }}">
+            {% if ext.description %}
+            {{ ext.description | safe }}
+            {% else %}
+            {{ ext.name }}
+            {% endif %}
+          </a></li>
+        {% endfor -%}
+        {% endif %}
+        {% if section.pages %}
+        {% for post in section.pages %}
+        <li><a href="{{ post.permalink | safe }}">{{ post.title }}</a> <span>{{ rss_link::rss_link() }}</span></li>
+        {% endfor %}
+        {% endif %}
+        {% if section.subsections %}
+        {% for subsection in section.subsections %}
+        {% set subsectionmd = get_section(path=subsection, metadata_only=true) %}
+        <li><a href="{{ subsectionmd.permalink }}">{{ subsectionmd.title }}</a> <span>{% set rss_path =
+            subsectionmd.path
+            ~
+            "atom.xml" %}<a href="{{ get_url(path=rss_path, trailing_slash=false) }}"><i
+                class="fa-sharp fa-solid fa-rss" , alt="atom/rss"></i></a></span></li>
+        {% endfor %}
+        {% endif %}
+      </ul>
+    </div>
+
+    {{ footer::footer() }}
+  </div>
+  <div class="right-grid">
+    {% set blog_section = get_section(path="blog/_index.md") -%}
+    <div class="toc">
+      <div class="info">
+        <h1>Blog posts <span>{{ rss_link::rss_link() }}</span></h1>
+      </div>
+      <div class="toc-container">
+        <ul>
+          {% for post in blog_section.pages %}
+          <li><a href="{{ post.permalink | safe }}">{{ post.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock content %}

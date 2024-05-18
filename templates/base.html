@@ -1,0 +1,27 @@
+{% import "macros/content.html" as content -%}
+{% import "macros/footer.html" as footer -%}
+{% import "macros/info.html" as info -%}
+{% import "macros/nav.html" as nav -%}
+{% import "macros/sections.html" as sections -%}
+{% import "macros/toc.html" as toc -%}
+{% import "macros/rss.html" as rss -%}
+{% import "macros/rss-link.html" as rss_link -%}
+{% import "macros/head.html" as head -%}
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+
+<head>
+  {% block head %}
+  {{ head::head() }}
+  {% endblock %}
+</head>
+
+<body>
+  <div class="main-grid">
+    {{ nav::navbar() }}
+    {% block content %}
+    {% endblock %}
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+{% macro info (i) %}
+<div class="info">
+	{% if page %}
+	<h1>{{ page.title | safe }}<span>
+			{{ rss_link::rss_link() }}
+		</span></h1>
+	<p>
+		{% if page.taxonomies.tags %}
+		{% for tag in page.taxonomies.tags %}
+		<span><a href="{{ get_url(path='tags/' ~ tag )}}">#{{ tag | safe }}</a></span>
+		{% endfor %}
+		{% endif %}
+	</p>
+	<p>
+		{% if page.authors %}
+		{% for author in page.authors %}
+		<span class="author">
+		{{ author }}
+		</span>|
+		{% endfor %}
+		{% else %}
+		<span class="author">{{ config.extra.author | safe }} </span>|
+		{% endif %}
+		<span class="dates">
+			{% if page.date %}
+			{{ page.date | safe }}</span> |
+		{% else %}
+		{% endif %}
+		<span class="dates">
+			{% if page.updated %}
+			updated: {{ page.updated | safe }}</span> |
+		{% else %}
+		{% endif %}
+		<span class="readtime">reading time: ~{{ page.reading_time }}min</span>
+	</p>
+	{% else %}
+	<h1>{{ section.title | safe }}<span>
+			{{ rss_link::rss_link() }}
+		</span></h1>
+	<p>
+		<span class="author">{{ config.extra.author | safe }} </span>|
+		<span class="dates">
+			{% if section.date %}
+			{{ section.date | safe }}</span> |
+		{% else %}
+		{% endif %}
+		<span class="dates">
+			{% if section.updated %}
+			updated: {{ section.updated | safe }}</span> |
+		{% else %}
+		{% endif %}
+		<span class="readtime">reading time: ~{{ section.reading_time }}min</span>
+	</p>
+	<blockquote>{{ section.description | safe }}</blockquote>
+	{% endif %}
+</div>
+{% endmacro %}

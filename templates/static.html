@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+
+<head>
+  {% block title %}
+  <title>{{ config.title }}</title>
+  {% endblock %}
+  <link rel="stylesheet" href="{{ get_url(path='style.css', cachebust=true) }}">
+  {% if config.extra.theme_color != "dark" -%}
+  {% set color = "color/" ~ config.extra.theme_color ~ ".css" -%}
+  <link rel="stylesheet" href="{{ get_url(path=color, cachebust=true) }}">
+  {%- else -%}
+  <link rel="stylesheet" href="{{ get_url(path='color/dark.css', cachebust=true) }}">
+  {% endif %}
+  {%- if config.extra.custom_css is defined -%}
+  <link rel="stylesheet" href="{{ get_url(path='custom.css', cachebust=true) }}">
+  {% endif %}
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <script src="https://kit.fontawesome.com/cd433992d4.js" crossorigin="anonymous"></script>
+  <script>
+    function resize() {
+      var x = document.getElementById("myLinks");
+      // var y = document.getElementsByClassName("subcontainer")[0];
+      // var nav = document.getElementsByClassName("topnav")[0];
+      if (x.style.display === "block") {
+        x.style.display = "none";
+      } else {
+        x.style.display = "block";
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+    {% block content %}
+    {% endblock %}
+  </div>
+</body>
+
+</html>

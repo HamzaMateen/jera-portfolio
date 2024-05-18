@@ -1,0 +1,41 @@
+{% import "macros/rss-link.html" as rss_link -%}
+{% macro navbar () %}
+<div class="topnav">
+	<!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+	<a href="javascript:void(0);" class="icon" onclick="resize()">
+	  <img class="icon_img" src="/favicon.png" />
+	</a>
+	<a href="{{ get_url(path='@/_index.md')}}" class="active">home</a>
+	<a href="{{ config.base_url ~ '/tags' }}">tags</a> <!-- Navigation links (hidden by default) -->
+	{% set mynavs = get_section(path="_index.md") %}
+	{% for nav in mynavs.subsections %}
+	{% set navmd = get_section(path=nav, metadata_only=true) %}
+	{% if navmd.path == "/blog/" %}
+	<a href="{{ navmd.permalink | safe }}">{{ navmd.path | trim_start_matches(pat="/") | trim_end_matches(pat="/") |
+		safe
+		}}</a>
+	{% else %}
+	{% endif %}
+	{% endfor %}
+	{% if config.extra.show_external_links %}
+        	{% for ext in config.extra.external_links -%}
+        	<a href="{{ ext.permalink }}">{{ ext.name }}</a>
+        	{% endfor -%}
+	{% endif %}
+	<div id="myLinks">
+		<!-- insert more_sections here -->
+		{% for nav in mynavs.subsections %}
+		{% set navmd = get_section(path=nav, metadata_only=true) %}
+		{% if navmd.path == "/blog/" %}
+		{% else %}
+		<a href="{{ navmd.permalink | safe }}">{{ navmd.path | trim_start_matches(pat="/") | trim_end_matches(pat="/") |
+			safe
+			}}</a>
+		{% endif %}
+		{% endfor %}
+		{% for nav in mynavs.pages %}
+		<a href="{{ nav.permalink | safe }}">{{ nav.title }}</a>
+		{% endfor %}
+	</div>
+</div>
+{% endmacro %}

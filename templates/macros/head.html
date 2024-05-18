@@ -1,0 +1,52 @@
+{% macro head() %}
+
+<link rel="icon" href="/{{ config.extra.favicon }}" />
+{% if page.title %}
+<title>{{ page.title }}</title>
+<meta description="{{ config.title }} {{ config.description }} {{ page.title }} {{ page.description }}">
+{% elif section.title %}
+<title>{{ section.title }}</title>
+<meta description="{{ config.title }} {{ config.description }} {{ section.title }} {{ section.description }}">
+{% elif term.name %}
+<title>#{{ term.name }}</title>
+<meta description="#{{ term.name }} {{ config.title }} {{ config.description }}">
+{% elif terms %}
+<title>#tags</title>
+<meta description="#tags {{ config.title }} {{ config.description }}">
+{% else %}
+<title>{{ config.title }}</title>
+<meta description="{{ config.title }} {{ config.description }}">
+{% endif %}
+<link rel="stylesheet" href="{{ get_url(path='style.css', cachebust=true) }}">
+<link rel="stylesheet" type="text/css" href="/syntax-theme-dark.css" media="(prefers-color-scheme: dark)" />
+<link rel="stylesheet" type="text/css" href="/syntax-theme-light.css" media="(prefers-color-scheme: light)" />
+<!--link rel="stylesheet" href="{{ get_url(path='fontawesome/scss/brands.css', cachebust=true) }}"-->
+<!--link rel="stylesheet" href="{{ get_url(path='fontawesome/scss/fontawesome.css', cachebust=true) }}"-->
+<!--link rel="stylesheet" href="{{ get_url(path='fontawesome/scss/regular.css', cachebust=true) }}"-->
+<!--link rel="stylesheet" href="{{ get_url(path='fontawesome/scss/solid.css', cachebust=true) }}"-->
+{% if config.extra.theme_color != "dark" -%}
+{% set color = "color/" ~ config.extra.theme_color ~ ".css" -%}
+<link rel="stylesheet" href="{{ get_url(path=color, cachebust=true) }}">
+{%- else -%}
+<link rel="stylesheet" href="{{ get_url(path='color/dark.css', cachebust=true) }}">
+{% endif %}
+{%- if config.extra.custom_css is defined -%}
+<link rel="stylesheet" href="{{ get_url(path='custom.css', cachebust=true) }}">
+{% endif %}
+{{ rss::rss() }}
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<script>
+  function resize() {
+    var x = document.getElementById("myLinks");
+    // var y = document.getElementsByClassName("subcontainer")[0];
+    // var nav = document.getElementsByClassName("topnav")[0];
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+  }
+</script>
+
+{% endmacro %}

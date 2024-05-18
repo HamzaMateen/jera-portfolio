@@ -1,0 +1,76 @@
+.topnav {
+  width: 100%;
+  text-align: center;
+  background-color: var(--background);
+  margin: 0px;
+  position: sticky;
+  position: -webkit-sticky;
+  z-index: 9999;
+  border-bottom: 2px var(--border-color) dotted;
+  top: 0rem;
+
+
+  .active {
+    color: var(--color);
+    background-color: var(--background);
+  }
+
+  .icon {
+    all: unset;
+    img {
+      all: unset;
+      float: left;
+      margin-right: 30px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      border-radius: 50%;
+      width: 48px;
+      
+    }
+  }
+
+  .icon_img:hover {
+    filter: invert(1);
+  }
+}
+
+.right {
+  all: unset;
+  float: left;
+
+}
+
+.topnav #myLinks {
+  display: none;
+}
+
+.topnav a {
+  float: left;
+  font-size: 1.2rem;
+  color: var(--color);
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  padding-top: 0.45rem;
+  padding-bottom: 0.45rem;
+  text-decoration: none;
+
+  @media (max-width: $phone-max-width) {
+    font-size: 1rem;
+    display: block;
+  }
+}
+
+.topnav a.icon {
+  float: left;
+  margin-left: 0.5rem;
+  margin-right: -1.5rem;
+}
+
+.topnav a:hover {
+  background-color: var(--background);
+  color: var(--color);
+  cursor: pointer;
+}

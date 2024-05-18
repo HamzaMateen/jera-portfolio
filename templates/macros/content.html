@@ -1,0 +1,25 @@
+{% macro content (c) %}
+<div class="content-body">
+	<article>
+		<section class="content">
+			{% if page.content %}
+			{% if page.draft %}
+			<h1>Page under construction</h1>
+			{% else %}
+			{{ page.content | safe }}
+			{% endif %}
+			{% else %}
+
+			{% if section.content %}
+			{% if section.draft %}
+			<h1>section under construction</h1>
+			{% else %}
+			{{ section.content | safe }}
+			{% endif %}
+			{% else %}
+			{% endif %}
+			{% endif %}
+		</section>
+	</article>
+</div>
+{% endmacro %}
