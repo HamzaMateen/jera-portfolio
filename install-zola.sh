@@ -1,11 +1,11 @@
 #!/bin/sh
 
-# Install Rust (needed for installing Zola)
-curl -sSf https://sh.rustup.rs | sh -s -- -y
+# desire Zola version 
+ZOLA_VERSION="0.18.0"
 
-# Add Cargo to PATH
-source $HOME/.cargo/env
+# download and install Zola 
+wget https://github.com/getzola/zola/releases/download/v0.18.0/zola-v0.18.0-x86_64-unknown-linux-gnu.tar.gz
+tar -xzf zola-v0.18.0-x86_64-unknown-linux-gnu.tar.gz 
 
-# Install Zola
-cargo install zola
+mv zola /usr/local/bin/zola 
 
