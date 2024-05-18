@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "build": "sh install-zola.sh && zola build"
+  }
+}
+
